@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class KeyboardInput : IUserInput
 {
-
-    //Variable
-
-   
-
     [Header("===== Key setting =====")]
     public string KeyUp = "w";     // declara key
     public string KeyDown = "s";
@@ -28,7 +23,7 @@ public class KeyboardInput : IUserInput
     public bool mouseEnable = false;
     public float mouseSensitivity = 1.0f;
 
-    // Update is called once per frame
+ 
     void Update()
     {
         if (mouseEnable == true)
@@ -41,7 +36,6 @@ public class KeyboardInput : IUserInput
         jUp = (Input.GetKey(KeyJup) ? 1.0f : 0) - (Input.GetKey(KeyJdown) ? 1.0f : 0);
         jRight = (Input.GetKey(KeyJright) ? 1.0f : 0) - (Input.GetKey(KeyJleft) ? 1.0f : 0);
         }
-
 
         targetDup = (Input.GetKey(KeyUp) ? 1.0f : 0) - (Input.GetKey(KeyDown) ? 1.0f : 0);
         targetDright = (Input.GetKey(KeyRight) ? 1.0f : 0) - (Input.GetKey(KeyLeft) ? 1.0f : 0);
@@ -56,8 +50,6 @@ public class KeyboardInput : IUserInput
         // set dUp & dRight smoothly
         dUp = Mathf.SmoothDamp(dUp, targetDup, ref velocityDup, 0.1f);
         dRight = Mathf.SmoothDamp(dRight, targetDright, ref velocityDright, 0.1f);
-
-
 
         // Circle grid mapping
         Vector2 tempDaxis = SquareToCircle(new Vector2(dRight, dUp));
@@ -100,14 +92,4 @@ public class KeyboardInput : IUserInput
         lastAttack = newAttack;
     }
 
-    
-    //private Vector2 SquareToCircle(Vector2 input)
-    //{
-    //    Vector2 output = Vector2.zero;
-
-    //    output.x = input.x * Mathf.Sqrt(1 - (input.y * input.y) / 2.0f);
-    //    output.y = input.y * Mathf.Sqrt(1 - (input.x * input.x) / 2.0f);
-
-    //    return output;
-    //}
 }

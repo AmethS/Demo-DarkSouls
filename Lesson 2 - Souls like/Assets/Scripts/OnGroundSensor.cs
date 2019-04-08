@@ -25,19 +25,11 @@ public class OnGroundSensor : MonoBehaviour {
         Collider[] outputcol = Physics.OverlapCapsule(point1, point2, radius, LayerMask.GetMask("Ground"));
         if (outputcol.Length != 0)
         {
-            //foreach (var col in outputcol)
-            //{
-            //    print(col.name);
-            //}
-
             SendMessageUpwards("IsGround");
         }
         else
         {
             SendMessageUpwards("IsNotGround");
         }
-      
-
-
     }
 }

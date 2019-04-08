@@ -56,44 +56,46 @@ public class ActorController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (pi.lockon == true)
-        {
-            camcon.LockUnlock();
-        }
-        if (camcon.lockStat == false)  //lockMode off
-        {
-            anim.SetFloat("forward", pi.dMag * (pi.run ? 2.0f : 1.0f));
-            anim.SetFloat("right", 0);
-        }
-        else //lockMode On
-        {
-            Vector3 localDvec = transform.InverseTransformVector(pi.dVec);
-            anim.SetFloat("forward", localDvec.z * (pi.run ? 2.0f : 1.0f));
-            anim.SetFloat("right", localDvec.x * (pi.run ? 2.0f : 1.0f));
-        }
-
-
-
-       
+		//defense
         anim.SetBool("defense", pi.defense);
 
+		//roll trigger
         if (pi.roll || rigid.velocity.magnitude>7.0f)
         {
             anim.SetTrigger("roll");
             canAttack = false;
         }
+
+		//jump trigger
         if (pi.jump == true && CheckState("Ground") && !CheckState("Attack1hA","Attack") && !CheckState("Attack1hB", "Attack") && !CheckState("Attack1hC", "Attack"))
         {
             anim.SetTrigger("jump");
             canAttack = false;
         }
+
+		//attack trigger
         if(pi.attack == true && CheckState("Ground") == true && canAttack == true)
         {
             anim.SetTrigger("attack");
         }
 
-
-        if (camcon.lockStat == false)  // Cant change forward in lockMode 
+		//lockMode & move
+		if (pi.lockon == true)
+		{
+			camcon.LockUnlock();
+		}
+		if (camcon.lockStat == false)  //lockMode off
+		{
+			anim.SetFloat("forward", pi.dMag * (pi.run ? 2.0f : 1.0f));
+			anim.SetFloat("right", 0);
+		}
+		else
+		{
+			Vector3 localDvec = transform.InverseTransformVector(pi.dVec);
+			anim.SetFloat("forward", localDvec.z * (pi.run ? 2.0f : 1.0f));
+			anim.SetFloat("right", localDvec.x * (pi.run ? 2.0f : 1.0f));
+		}
+		if (camcon.lockStat == false)  // Cant change forward in lockMode 
         {
             if (pi.dMag > 0.001f)  // avoid pi.dVec = 0
             {
@@ -124,20 +126,17 @@ public class ActorController : MonoBehaviour {
             }
         }
 
-
-
-
-        
     }
 
     private void FixedUpdate()
     {
+		//control rigibody
         rigid.position += deltaPos;
-        // rigid.position += planarVec * Time.fixedDeltaTime ;
         rigid.velocity = new Vector3(planarVec.x, rigid.velocity.y, planarVec.z) + thrustVec;
         thrustVec = Vector3.zero;
         deltaPos = Vector3.zero;
     }
+
     private bool CheckState(string stateName,string layerName = "Base Layer")
     {
         int layerIndex = anim.GetLayerIndex(layerName);
@@ -145,6 +144,8 @@ public class ActorController : MonoBehaviour {
         //访问 animator 数据类型的实例 anim下的GCASI方法返回的实例的方法IsName，并把返回值赋给result
         return result;
     }
+
+
             ///
             ///  Message processing block
             ///
