@@ -32,12 +32,14 @@ public class ActorController : MonoBehaviour {
     private bool trackDirection = false;
     private bool canAttack = false;
     private CapsuleCollider col;
-    private float lerpTarget;
+    //private float lerpTarget;
     private Vector3 deltaPos;
 
+	
+	public bool leftIsShiel = true;
 
 
-    // Use this for initialization
+
     void Awake () {
         IUserInput[] inputs = GetComponents<IUserInput>();
         foreach (var input in inputs)
@@ -53,31 +55,55 @@ public class ActorController : MonoBehaviour {
         col = GetComponent<CapsuleCollider>();
     }
 	
-	// Update is called once per frame
 	void Update () {
 
 		//defense
-        anim.SetBool("defense", pi.defense);
+		if (leftIsShiel)
+		{
+			if (CheckState("Ground"))
+			{
+				anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 1);
+				anim.SetBool("defense", pi.defense);
+			}
+			else
+			{
+				anim.SetBool("defense", false);
+				anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
+			}
+		}
+		else
+		{
+			anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
+		}
 
 		//roll trigger
-        if (pi.roll || rigid.velocity.magnitude>7.0f)
+		if (pi.roll || rigid.velocity.magnitude>7.0f)
         {
             anim.SetTrigger("roll");
             canAttack = false;
         }
 
 		//jump trigger
-        if (pi.jump == true && CheckState("Ground") && !CheckState("Attack1hA","Attack") && !CheckState("Attack1hB", "Attack") && !CheckState("Attack1hC", "Attack"))
+        if (pi.jump == true && CheckState("Ground") && !CheckState("Attac") && !CheckState("Attack1hB") && !CheckState("Attack1hC"))
         {
             anim.SetTrigger("jump");
             canAttack = false;
         }
 
 		//attack trigger
-        if(pi.attack == true && CheckState("Ground") == true && canAttack == true)
-        {
-            anim.SetTrigger("attack");
-        }
+		if ((pi.rb == true || pi.lb == true) == true && (CheckState("Ground") || CheckStateTag("Attack")) == true && canAttack == true)
+		{
+			if (pi.rb == true)
+			{
+				anim.SetBool("R0L1", false);
+				anim.SetTrigger("attack");
+			}
+			else if (pi.lb == true && leftIsShiel == false)
+			{
+				anim.SetBool("R0L1", true);
+				anim.SetTrigger("attack");
+			}
+		}
 
 		//lockMode & move
 		if (pi.lockon == true)
@@ -144,13 +170,18 @@ public class ActorController : MonoBehaviour {
         //访问 animator 数据类型的实例 anim下的GCASI方法返回的实例的方法IsName，并把返回值赋给result
         return result;
     }
+	private bool CheckStateTag(string tagName, string layerName = "Base Layer")
+	{
+		int layerIndex = anim.GetLayerIndex(layerName);
+		bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
+		return result;
+	}
 
+	///
+	///  Message processing block
+	///
 
-            ///
-            ///  Message processing block
-            ///
-
-    public void OnJumpEnter()
+	public void OnJumpEnter()
     {
         pi.inputEnabled = false;
         lockPlanar = true;
@@ -209,33 +240,16 @@ public class ActorController : MonoBehaviour {
     public void OnAttack1hAEnter()
     {
         pi.inputEnabled = false;
-        lerpTarget = 1.0f;
-        
     }
     public void OnAttack1hAUpdate()
     {
         thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
-        float currentWeight = anim.GetLayerWeight(anim.GetLayerIndex("Attack"));
-        currentWeight = Mathf.Lerp(currentWeight, lerpTarget, 0.1f);
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack"), currentWeight);
     }
-    public void OnAttackIdleEnter()
+	public void OnUpdateRM(object _deltaPos)
     {
-        pi.inputEnabled = true;
-        lerpTarget = 0f;
-    }
-    public void OnAttackIdleUpdate()
-    {
-        float currentWeight = anim.GetLayerWeight(anim.GetLayerIndex("Attack"));
-        currentWeight = Mathf.Lerp(currentWeight, lerpTarget, 0.1f);
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack"), currentWeight);
-    }
-
-    public void OnUpdateRM(object _deltaPos)
-    {
-        if (CheckState("Attack1hC","Attack"))
+        if (CheckState("Attack1hC"))
         {
-            deltaPos += (0.7f * deltaPos + 0.3f * (Vector3)_deltaPos) / 1.0f;
+            deltaPos += (0.5f * deltaPos + 0.5f * (Vector3)_deltaPos) / 1.0f;
         }
     }
 }

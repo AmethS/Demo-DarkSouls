@@ -83,11 +83,11 @@ public class KeyboardInput : IUserInput
         bool newAttack = Input.GetKey(keyC);
         if (newAttack != lastAttack && newAttack == true)
         {
-            attack = true; 
+            rb = true; 
         }
         else
         {
-            attack = false;
+            rb = false;
         }
         lastAttack = newAttack;
     }

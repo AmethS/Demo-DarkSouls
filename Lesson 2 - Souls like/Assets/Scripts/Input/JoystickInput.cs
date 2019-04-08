@@ -79,7 +79,11 @@ public class JoystickInput : IUserInput {
         jump = buttonB.IsExtending && buttonB.OnPressed;
         roll = (buttonB.OnReleased && buttonB.IsDelaying);// ||(buttonA.IsPressing && !buttonA.IsDelaying);
         defense = buttonLB.IsPressing;
-        attack = buttonRB.OnPressed;
+		//attack = buttonRB.OnPressed;
+		rb = buttonRB.OnPressed;
+		rt = buttonRT.OnPressed;
+		lb = buttonLB.OnPressed;
+		lt = buttonLT.OnPressed;
         lockon = buttonRS.OnPressed;
     }
 
