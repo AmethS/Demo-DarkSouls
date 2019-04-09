@@ -90,6 +90,8 @@ public class KeyboardInput : IUserInput
             rb = false;
         }
         lastAttack = newAttack;
+
+
     }
 
 }

@@ -57,6 +57,12 @@ public class ActorController : MonoBehaviour {
 	
 	void Update () {
 
+		if (Input.GetKeyDown("h"))
+		{
+			anim.SetTrigger("hit");
+		}
+
+
 		//defense
 		if (leftIsShiel)
 		{
@@ -245,6 +251,10 @@ public class ActorController : MonoBehaviour {
     {
         thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
     }
+	public void OnHitEnter()
+	{
+		pi.inputEnabled = false;
+	}
 	public void OnUpdateRM(object _deltaPos)
     {
         if (CheckState("Attack1hC"))
@@ -252,5 +262,6 @@ public class ActorController : MonoBehaviour {
             deltaPos += (0.5f * deltaPos + 0.5f * (Vector3)_deltaPos) / 1.0f;
         }
     }
+
 }
 

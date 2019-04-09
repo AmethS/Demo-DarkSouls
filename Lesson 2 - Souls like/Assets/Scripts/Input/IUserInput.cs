@@ -48,4 +48,12 @@ public abstract class IUserInput : MonoBehaviour {
 
         return output;
     }
+
+	protected void UpdateDmagDvec(float dUp,float dRight)
+	{
+		dMag = Mathf.Sqrt((dUp * dUp) + (dRight * dRight));
+		dVec = (dRight * transform.right) + (dUp * transform.forward);
+
+	}
+
 }
