@@ -90,14 +90,14 @@ public class ActorController : MonoBehaviour {
         }
 
 		//jump trigger
-        if (pi.jump == true && CheckState("Ground") && !CheckState("Attac") && !CheckState("Attack1hB") && !CheckState("Attack1hC"))
+        if (pi.jump == true)
         {
             anim.SetTrigger("jump");
             canAttack = false;
         }
 
 		//attack trigger
-		if ((pi.rb == true || pi.lb == true) == true && (CheckState("Ground") || CheckStateTag("Attack")) == true && canAttack == true)
+		if ((pi.rb == true || pi.lb == true) == true && (CheckState("Ground") || CheckStateTag("AttackL") || CheckStateTag("AttackR")) == true && canAttack == true)
 		{
 			if (pi.rb == true)
 			{
@@ -169,14 +169,14 @@ public class ActorController : MonoBehaviour {
         deltaPos = Vector3.zero;
     }
 
-    private bool CheckState(string stateName,string layerName = "Base Layer")
+    public bool CheckState(string stateName,string layerName = "Base Layer")
     {
         int layerIndex = anim.GetLayerIndex(layerName);
         bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);
         //访问 animator 数据类型的实例 anim下的GCASI方法返回的实例的方法IsName，并把返回值赋给result
         return result;
     }
-	private bool CheckStateTag(string tagName, string layerName = "Base Layer")
+	public bool CheckStateTag(string tagName, string layerName = "Base Layer")
 	{
 		int layerIndex = anim.GetLayerIndex(layerName);
 		bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
@@ -251,6 +251,10 @@ public class ActorController : MonoBehaviour {
     {
         thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
     }
+	public void OnAttackExit()
+	{
+		model.SendMessage("WeaponDisable");
+	} 
 	public void OnHitEnter()
 	{
 		pi.inputEnabled = false;

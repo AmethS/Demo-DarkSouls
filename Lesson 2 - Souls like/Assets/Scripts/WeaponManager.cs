@@ -2,26 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour {
+public class WeaponManager : IActorManagerInterface {
 
-	public ActorManager am;
-	private Collider weaponCol;
+	private Collider weaponColL;
+	private Collider weaponColR;
 
 	public GameObject whL;
 	public GameObject whR;
 
 	void Start()
 	{
-		weaponCol = whR.GetComponentInChildren<Collider>();
-		print(transform.DeepFind("weaponHandleR"));
+		whL = transform.DeepFind("weaponHandleL").gameObject;
+		whR = transform.DeepFind("weaponHandleR").gameObject;
+
+		weaponColL = whL.GetComponentInChildren<Collider>();
+		weaponColR = whR.GetComponentInChildren<Collider>();
+
+
+
+		//weaponCol = whR.GetComponentInChildren<Collider>();
+		//print(transform.DeepFind("Cylinder"));
 	}
 
 	public void WeaponEnable()
 	{
-		weaponCol.enabled = true;
+		if (am.ac.CheckStateTag("AttackL"))
+		{
+			weaponColL.enabled = true;
+		}
+		else
+		{
+			weaponColR.enabled = true;
+		}
 	}
 	public void WeaponDisable()
 	{
-		weaponCol.enabled = false;
+			weaponColL.enabled = false;
+			weaponColR.enabled = false;
 	}
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(CapsuleCollider))]
-public class BattleManager : MonoBehaviour {
+public class BattleManager : IActorManagerInterface {
 
-	public ActorManager am;
 	private CapsuleCollider defCol;
 
 	void Start()
@@ -14,7 +13,7 @@ public class BattleManager : MonoBehaviour {
 		defCol = GetComponent<CapsuleCollider>();
 		defCol.center = new Vector3(0, 1, 0);
 		defCol.height = 2.0f;
-		defCol.radius = 0.25f;
+		defCol.radius = 0.4f;
 		defCol.isTrigger = true;
 	}
 	void OnTriggerEnter(Collider col)

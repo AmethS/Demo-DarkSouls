@@ -5,8 +5,11 @@ using UnityEngine;
 public class ActorManager : MonoBehaviour {
 
 	public ActorController ac;
+
+	[Header("=== Auto Generate if Null===")]
 	public BattleManager bm;
 	public WeaponManager wm;
+	public StateManager sm;
 
 	// Use this for initialization
 	void Awake()
@@ -14,19 +17,25 @@ public class ActorManager : MonoBehaviour {
 		ac = GetComponent<ActorController>();
 		GameObject model = ac.model;
 		GameObject sensor = transform.Find("sensor").gameObject;
-		bm = sensor.GetComponent<BattleManager>();
-		if (bm == null)
-		{
-			bm = sensor.AddComponent<BattleManager>();
-		}
-		bm.am = this;
 
-		wm = model.GetComponent<WeaponManager>();
-		if (wm == null)
+
+		bm = Bind<BattleManager>(sensor);
+		wm = Bind<WeaponManager>(model);
+		sm = Bind<StateManager>(gameObject);
+		sm.Test();
+	}
+
+	//Generic  for connect AM and Other Mananger
+	private T Bind<T>(GameObject go) where T : IActorManagerInterface 
+	{
+		T tempInstance;
+		tempInstance = go.GetComponent<T>();
+		if (tempInstance == null)
 		{
-			wm = model.AddComponent<WeaponManager>();
+			tempInstance = go.AddComponent<T>();
 		}
-		wm.am = this;
+		tempInstance.am = this;
+		return tempInstance;
 	}
 
 	// Update is called once per frame
@@ -36,6 +45,6 @@ public class ActorManager : MonoBehaviour {
 
 	public void DoDamage()
 	{
-		ac.IssueTrigger("hit");
+		ac.IssueTrigger("die");
 	}
 }
