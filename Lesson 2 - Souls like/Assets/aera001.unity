@@ -299,7 +299,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 430422825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.078, y: 1.341, z: 0.064}
+  m_LocalPosition: {x: -0.078, y: 0.6, z: 0.064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1698317780}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 693311143}
   m_Layer: 9
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +572,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 693311141}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -594,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778914656}
   m_Layer: 9
-  m_Name: weaponHandle
+  m_Name: weaponHandleL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 819120499}
   - component: {fileID: 819120500}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913880236}
   m_Layer: 9
-  m_Name: weaponHandle
+  m_Name: weaponHandleR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -848,7 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041045404}
   m_Layer: 9
-  m_Name: weaponHandle
+  m_Name: weaponHandleL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,7 +940,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052027625}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1100,7 +1100,7 @@ GameObject:
   - component: {fileID: 1367679763}
   m_Layer: 9
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1159,7 +1159,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1367679761}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -1273,7 +1273,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467711981}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1341,7 +1341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1672224300}
   m_Layer: 9
-  m_Name: weaponHandle
+  m_Name: weaponHandleR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698317779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.3, z: -3.14}
+  m_LocalPosition: {x: 0.3, y: 0.42, z: -2.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 430422826}
@@ -1418,7 +1418,6 @@ GameObject:
   - component: {fileID: 1723591621}
   - component: {fileID: 1723591620}
   - component: {fileID: 1723591619}
-  - component: {fileID: 1723591618}
   - component: {fileID: 1723591617}
   m_Layer: 10
   m_Name: EnemyHandle
@@ -1435,7 +1434,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723591616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a8b2e1a3031ce49af7ed30c8bb039a, type: 3}
+  m_Script: {fileID: 11500000, guid: fefa6869edbe1cc4181af5bee53333f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dUp: 0
@@ -1454,59 +1453,6 @@ MonoBehaviour:
   rb: 0
   rt: 0
   inputEnabled: 1
-  axisX: AxisX
-  axisY: AxisY
-  axisJright: Axis4
-  axisJup: Axis5
-  btnA: Btn0
-  btnB: Btn1
-  btnX: Btn2
-  btnY: Btn3
-  btnLB: Btn4
-  btnRB: Btn5
-  btnLS: Btn8
-  btnRS: Btn9
---- !u!114 &1723591618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1723591616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53e2e51a16443741804268e3c933619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dUp: 0
-  dRight: 0
-  dMag: 0
-  dVec: {x: 0, y: 0, z: 0}
-  jUp: 0
-  jRight: 0
-  run: 0
-  defense: 0
-  jump: 0
-  roll: 0
-  lockon: 0
-  lb: 0
-  lt: 0
-  rb: 0
-  rt: 0
-  inputEnabled: 1
-  KeyUp: w
-  KeyDown: s
-  KeyLeft: a
-  KeyRight: d
-  keyA: left shift
-  keyB: space
-  keyC: mouse 0
-  keyD: mouse 1
-  KeyJup: up
-  KeyJdown: down
-  KeyJleft: left
-  KeyJright: right
-  mouseEnable: 1
-  mouseSensitivity: 1
 --- !u!114 &1723591619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,6 +1562,20 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
   m_PrefabInternal: {fileID: 411338999}
+--- !u!114 &1759064103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1759064097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c6f8f36d01f464cbdf0b96a0eb3aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  whL: {fileID: 778914655}
+  whR: {fileID: 1672224299}
 --- !u!1 &1766765338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1620,8 @@ GameObject:
   - component: {fileID: 1771631535}
   - component: {fileID: 1771631534}
   - component: {fileID: 1771631539}
-  m_Layer: 0
+  - component: {fileID: 1771631540}
+  m_Layer: 11
   m_Name: PlayerHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1814,6 +1775,20 @@ MonoBehaviour:
   btnRB: Btn5
   btnLS: Btn8
   btnRS: Btn9
+--- !u!114 &1771631540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771631533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a46d98dce84c144b3c113871af76dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 0}
+  bm: {fileID: 0}
+  wm: {fileID: 0}
 --- !u!1 &1876594030 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
@@ -1852,6 +1827,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TempVec: {x: -14.5, y: -19.85, z: -4.02}
+--- !u!114 &1876594035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876594030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c6f8f36d01f464cbdf0b96a0eb3aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  whL: {fileID: 1041045403}
+  whR: {fileID: 913880235}
 --- !u!1 &1914386298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1914386299}
   - component: {fileID: 1914386300}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

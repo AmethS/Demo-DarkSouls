@@ -254,6 +254,7 @@ public class ActorController : MonoBehaviour {
 	public void OnHitEnter()
 	{
 		pi.inputEnabled = false;
+		planarVec = Vector3.zero;
 	}
 	public void OnUpdateRM(object _deltaPos)
     {
@@ -263,5 +264,9 @@ public class ActorController : MonoBehaviour {
         }
     }
 
+	public void IssueTrigger(string triggerName)
+	{
+		anim.SetTrigger(triggerName);
+	}
 }
 

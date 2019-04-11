@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 		myCamera = Camera.main.gameObject;
         lockDot.enabled = false;
 		}
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
 
         tempEulerX = -3;
