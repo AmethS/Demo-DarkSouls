@@ -69,7 +69,7 @@ public class ActorController : MonoBehaviour {
 			else
 			{
 				anim.SetBool("defense", false);
-				//anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
+				anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
 			}
 		}
 		else
@@ -92,7 +92,7 @@ public class ActorController : MonoBehaviour {
         }
 
 		//attack trigger
-		if ((pi.rb == true || pi.lb == true) == true && (CheckState("Ground") || CheckStateTag("AttackL") || CheckStateTag("AttackR")) == true && canAttack == true)
+		if ((pi.rb == true || pi.lb == true) == true && (CheckState("Ground") || CheckStateTag("AttackL") || CheckStateTag("AttackR")) && canAttack)
 		{
 			if (pi.rb == true)
 			{
@@ -105,6 +105,28 @@ public class ActorController : MonoBehaviour {
 				anim.SetTrigger("attack");
 			}
 		}
+
+		//counter trigger
+		if ((pi.lt || pi.rt) && (CheckState("Ground") || CheckStateTag("AttackL") || CheckStateTag("AttackR")) && canAttack)
+		{
+			if (pi.rt)
+			{
+				//do right heavy attack
+			}
+			else
+			{
+				if (!leftIsShiel)
+				{
+					// do left heavy attack
+				}
+				else
+				{
+					anim.SetTrigger("counterBack");
+				}
+			}
+
+		}
+
 
 		//lockMode & move
 		if (pi.lockon == true)
@@ -263,6 +285,18 @@ public class ActorController : MonoBehaviour {
 	public void OnBlockedEnter()
 	{
 		pi.inputEnabled = false;
+	}
+
+	public void OnStunnedEnter()
+	{
+		pi.inputEnabled = false;
+		planarVec = Vector3.zero;
+	}
+	
+	public void OnCounterBackEnter()
+	{
+		pi.inputEnabled = false;
+		planarVec = Vector3.zero;
 	}
 
 	public void OnUpdateRM(object _deltaPos)

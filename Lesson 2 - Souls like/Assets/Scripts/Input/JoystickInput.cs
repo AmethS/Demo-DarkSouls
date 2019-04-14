@@ -19,9 +19,11 @@ public class JoystickInput : IUserInput {
     public string btnRB = "Btn5";
     public string btnLS = "Btn8";
     public string btnRS = "Btn9";
+	public string btnLT = "Axis9";
+	public string btnRT = "Axis10";
 
-    //VirtualButton
-    public MyButton buttonA = new MyButton();
+	//VirtualButton
+	public MyButton buttonA = new MyButton();
     public MyButton buttonB = new MyButton();
     public MyButton buttonX = new MyButton();
     public MyButton buttonY = new MyButton();
@@ -43,9 +45,11 @@ public class JoystickInput : IUserInput {
         buttonX.Tick(Input.GetButton(btnX));
         buttonY.Tick(Input.GetButton(btnY));
         buttonLB.Tick(Input.GetButton(btnLB));
-        buttonRB.Tick(Input.GetButton(btnRB));
         buttonLS.Tick(Input.GetButton(btnLS));
+        buttonRB.Tick(Input.GetButton(btnRB));
         buttonRS.Tick(Input.GetButton(btnRS));
+		buttonLT.TickAxis(Input.GetAxis(btnLT));
+		buttonRT.TickAxis(Input.GetAxis(btnRT));
 
         jUp = -1 * Input.GetAxis(axisJup);
         jRight = Input.GetAxis(axisJright);
@@ -53,8 +57,9 @@ public class JoystickInput : IUserInput {
         targetDup = Input.GetAxis(axisY);
         targetDright = Input.GetAxis(axisX);
 
-        // input on / off  (soft switch)
-        if (inputEnabled == false)
+
+		// input on / off  (soft switch)
+		if (inputEnabled == false)
         {
             targetDup = 0;
             targetDright = 0;
@@ -79,7 +84,7 @@ public class JoystickInput : IUserInput {
         jump = buttonB.IsExtending && buttonB.OnPressed;
         roll = (buttonB.OnReleased && buttonB.IsDelaying);// ||(buttonA.IsPressing && !buttonA.IsDelaying);
         defense = buttonLB.IsPressing;
-		//attack = buttonRB.OnPressed;
+
 		rb = buttonRB.OnPressed;
 		rt = buttonRT.OnPressed;
 		lb = buttonLB.OnPressed;

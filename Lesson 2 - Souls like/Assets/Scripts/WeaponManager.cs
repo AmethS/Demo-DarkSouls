@@ -10,18 +10,34 @@ public class WeaponManager : IActorManagerInterface {
 	public GameObject whL;
 	public GameObject whR;
 
+	public WeaponController wcL;
+	public WeaponController wcR;
+
 	void Start()
 	{
 		whL = transform.DeepFind("weaponHandleL").gameObject;
 		whR = transform.DeepFind("weaponHandleR").gameObject;
 
+		wcL = BindWeaponController(whL);
+		wcR = BindWeaponController(whR);
+
+
 		weaponColL = whL.GetComponentInChildren<Collider>();
 		weaponColR = whR.GetComponentInChildren<Collider>();
 
+	}
 
+	public WeaponController BindWeaponController(GameObject targerObj)
+	{
+		WeaponController tempWc;
+		tempWc = targerObj.GetComponent<WeaponController>();
+		if (tempWc == null)
+		{
+			tempWc = targerObj.AddComponent<WeaponController>();
+		}
+		tempWc.wm = this;
 
-		//weaponCol = whR.GetComponentInChildren<Collider>();
-		//print(transform.DeepFind("Cylinder"));
+		return tempWc;
 	}
 
 	public void WeaponEnable()

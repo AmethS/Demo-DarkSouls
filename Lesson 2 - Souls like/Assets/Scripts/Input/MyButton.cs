@@ -61,6 +61,56 @@ public class MyButton{
 
     }
 
+	public void TickAxis(float finput)
+	{
+		bool input = false;
+
+		if(finput > 0.4f)
+		{
+			input = true;
+		}
+		else
+		{
+			input = false;
+		}
+
+		extTimer.Tick();
+		delayTimer.Tick();
+
+		curState = input;
+		IsPressing = curState;
+
+		OnPressed = false;
+		OnReleased = false;
+		IsExtending = false;
+		IsDelaying = false;
+
+		if (curState != lastState)
+		{
+			if (curState == true)
+			{
+				OnPressed = true;
+				StartTimer(delayTimer, delayingDuration);
+			}
+			else
+			{
+				OnReleased = true;
+				StartTimer(extTimer, extendingDuration);
+			}
+		}
+
+		lastState = curState;
+
+		if (extTimer.state == MyTimer.STATE.RUN)
+		{
+			IsExtending = true;
+		}
+		if (delayTimer.state == MyTimer.STATE.RUN)
+		{
+			IsDelaying = true;
+		}
+	}
+
     private void StartTimer(MyTimer timer,float duration)
     {
         timer.duration = duration;
