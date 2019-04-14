@@ -25,7 +25,7 @@ public class ActorController : MonoBehaviour {
     public PhysicMaterial frictionZero;
 
     private Animator anim;
-    private Rigidbody rigid;
+    public Rigidbody rigid;
     private Vector3 planarVec;
     private Vector3 thrustVec;
     private bool lockPlanar = false;
@@ -57,16 +57,11 @@ public class ActorController : MonoBehaviour {
 	
 	void Update () {
 
-		if (Input.GetKeyDown("h"))
-		{
-			anim.SetTrigger("hit");
-		}
-
 
 		//defense
 		if (leftIsShiel)
 		{
-			if (CheckState("Ground"))
+			if (CheckState("Ground")||CheckState("Blocked"))
 			{
 				anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 1);
 				anim.SetBool("defense", pi.defense);
@@ -74,7 +69,7 @@ public class ActorController : MonoBehaviour {
 			else
 			{
 				anim.SetBool("defense", false);
-				anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
+				//anim.SetLayerWeight(anim.GetLayerIndex("Defense"), 0);
 			}
 		}
 		else
@@ -260,6 +255,16 @@ public class ActorController : MonoBehaviour {
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 	}
+	public void OnDieEnter()
+	{
+		pi.inputEnabled = false;
+		planarVec = Vector3.zero;
+	}
+	public void OnBlockedEnter()
+	{
+		pi.inputEnabled = false;
+	}
+
 	public void OnUpdateRM(object _deltaPos)
     {
         if (CheckState("Attack1hC"))

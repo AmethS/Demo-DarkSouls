@@ -40,11 +40,59 @@ public class ActorManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		 
 	}
 
-	public void DoDamage()
+	public void TryDoDamage()
+	{
+		if (sm.isImmortal)
+		{
+			//do nothing
+		}
+		else if (sm.isDefense)
+		{
+			Blocked();
+		}
+		else
+		{
+			if (sm.HP <= 0)
+			{
+				//Already dead.
+			}
+			else
+			{
+				sm.AddHP(-5);
+				if (sm.HP > 0)
+				{
+					Hit();
+				}
+				else
+				{
+					Die();
+				}
+			}
+			
+		}
+	}
+
+	public void Blocked()
+	{
+		ac.IssueTrigger("blocked");
+	}
+
+
+	public void Hit()
+	{
+		ac.IssueTrigger("hit");
+	}
+	public void Die()
 	{
 		ac.IssueTrigger("die");
+		ac.pi.inputEnabled = false;
+		if (ac.camcon.lockStat == true)
+		{
+			ac.camcon.LockUnlock();
+		}
+			ac.camcon.enabled = false;
 	}
 }

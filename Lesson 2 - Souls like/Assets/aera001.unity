@@ -479,7 +479,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
       propertyPath: m_IsActive
@@ -573,11 +573,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 693311141}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!33 &693311145
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1160,11 +1160,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1367679761}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!33 &1367679765
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1419,6 +1419,8 @@ GameObject:
   - component: {fileID: 1723591620}
   - component: {fileID: 1723591619}
   - component: {fileID: 1723591617}
+  - component: {fileID: 1723591618}
+  - component: {fileID: 1723591623}
   m_Layer: 10
   m_Name: EnemyHandle
   m_TagString: Untagged
@@ -1453,6 +1455,21 @@ MonoBehaviour:
   rb: 0
   rt: 0
   inputEnabled: 1
+--- !u!114 &1723591618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723591616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a46d98dce84c144b3c113871af76dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 0}
+  bm: {fileID: 0}
+  wm: {fileID: 0}
+  sm: {fileID: 0}
 --- !u!114 &1723591619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,6 +1492,7 @@ MonoBehaviour:
   jabMultiplier: 1
   frictionOne: {fileID: 13400000, guid: 166e4285acde314499f274c0a647bcf0, type: 2}
   frictionZero: {fileID: 13400000, guid: 4206eca27c41ecd45a4f8eaf4fe1886e, type: 2}
+  rigid: {fileID: 0}
   leftIsShiel: 1
 --- !u!54 &1723591620
 Rigidbody:
@@ -1520,6 +1538,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723591623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723591616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217c031a94be49949beb5381afccdc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  HPMax: 15
+  HP: 15
+  isGround: 0
+  isJump: 0
+  isFall: 0
+  isRoll: 0
+  isJab: 0
+  isAttack: 0
+  isHit: 0
+  isDie: 0
+  isBlocked: 0
+  isDefense: 0
+  isAllowDefense: 0
+  isImmortal: 0
 --- !u!1 &1759064097 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
@@ -1621,6 +1665,7 @@ GameObject:
   - component: {fileID: 1771631534}
   - component: {fileID: 1771631539}
   - component: {fileID: 1771631540}
+  - component: {fileID: 1771631541}
   m_Layer: 11
   m_Name: PlayerHandle
   m_TagString: Untagged
@@ -1691,6 +1736,7 @@ MonoBehaviour:
   jabMultiplier: 1
   frictionOne: {fileID: 13400000, guid: 166e4285acde314499f274c0a647bcf0, type: 2}
   frictionZero: {fileID: 13400000, guid: 4206eca27c41ecd45a4f8eaf4fe1886e, type: 2}
+  rigid: {fileID: 0}
   leftIsShiel: 1
 --- !u!136 &1771631536
 CapsuleCollider:
@@ -1730,8 +1776,8 @@ Transform:
   m_LocalPosition: {x: -4.1700006, y: 1, z: -4.8899994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1093873407}
   - {fileID: 1914386299}
+  - {fileID: 1093873407}
   - {fileID: 430422826}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1789,6 +1835,33 @@ MonoBehaviour:
   ac: {fileID: 0}
   bm: {fileID: 0}
   wm: {fileID: 0}
+  sm: {fileID: 0}
+--- !u!114 &1771631541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771631533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217c031a94be49949beb5381afccdc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  HPMax: 15
+  HP: 25
+  isGround: 0
+  isJump: 0
+  isFall: 0
+  isRoll: 0
+  isJab: 0
+  isAttack: 0
+  isHit: 0
+  isDie: 0
+  isBlocked: 0
+  isDefense: 0
+  isAllowDefense: 0
+  isImmortal: 0
 --- !u!1 &1876594030 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100138, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
@@ -1868,7 +1941,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1771631538}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914386300
 MonoBehaviour:
