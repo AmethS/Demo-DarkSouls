@@ -39,7 +39,6 @@ public class WeaponManager : IActorManagerInterface {
 
 		return tempWc;
 	}
-
 	public void WeaponEnable()
 	{
 		if (am.ac.CheckStateTag("AttackL"))
@@ -56,4 +55,13 @@ public class WeaponManager : IActorManagerInterface {
 			weaponColL.enabled = false;
 			weaponColR.enabled = false;
 	}
+	public void CounterBackEnable()
+	{
+		am.SetIsCounterBack(true);
+	}
+	public void CounterBackDisable()
+	{
+		am.SetIsCounterBack(false);
+	}
+
 }

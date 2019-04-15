@@ -54,6 +54,10 @@ public class CameraController : MonoBehaviour
             {
 				LockProcessA(null, false, false, isAI);
             }
+			if ((lockTarget.am != null) && (lockTarget.am.sm.isDie))
+			{
+				LockProcessA(null, false, false, isAI);
+			}
         }
     }
 
@@ -133,11 +137,13 @@ public class CameraController : MonoBehaviour
     {
         public GameObject obj;
         public float halfHeight;
+		public ActorManager am;
 
         public LockTarget(GameObject _obj,float _halfHeight)
         {
             obj = _obj;
             halfHeight = _halfHeight;
+			am = _obj.GetComponent<ActorManager>();
         }
     }
 

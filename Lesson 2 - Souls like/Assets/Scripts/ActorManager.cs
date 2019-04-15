@@ -22,7 +22,7 @@ public class ActorManager : MonoBehaviour {
 		bm = Bind<BattleManager>(sensor);
 		wm = Bind<WeaponManager>(model);
 		sm = Bind<StateManager>(gameObject);
-		sm.Test();
+		//sm.Test();
 	}
 
 	//Generic  for connect AM and Other Mananger
@@ -43,9 +43,28 @@ public class ActorManager : MonoBehaviour {
 		 
 	}
 
-	public void TryDoDamage()
+	public void SetIsCounterBack(bool value)
 	{
-		if (sm.isImmortal)
+		sm.isCounterBackEnable = value;
+	}
+
+	public void TryDoDamage(WeaponController targetWc,bool attackVaild,bool counterVaild)
+	{
+		if (sm.isCounterBackSuccess)
+		{
+			if (counterVaild)
+			{
+				targetWc.wm.am.Stunned();
+			}
+		}
+		else if (sm.isCounterBackFailure)
+		{
+			if (attackVaild)
+			{
+				HitOrDie(false);
+			}
+		}
+		else if (sm.isImmortal)
 		{
 			//do nothing
 		}
@@ -55,32 +74,21 @@ public class ActorManager : MonoBehaviour {
 		}
 		else
 		{
-			if (sm.HP <= 0)
+			if (attackVaild)
 			{
-				//Already dead.
+				HitOrDie(true);
 			}
-			else
-			{
-				sm.AddHP(-5);
-				if (sm.HP > 0)
-				{
-					Hit();
-				}
-				else
-				{
-					Die();
-				}
-			}
-			
 		}
 	}
 
+	public void Stunned()
+	{
+		ac.IssueTrigger("stunned");
+	}
 	public void Blocked()
 	{
 		ac.IssueTrigger("blocked");
 	}
-
-
 	public void Hit()
 	{
 		ac.IssueTrigger("hit");
@@ -94,5 +102,25 @@ public class ActorManager : MonoBehaviour {
 			ac.camcon.LockUnlock();
 		}
 			ac.camcon.enabled = false;
+	}
+	public void HitOrDie(bool doHitAnimation)
+	{
+		if (sm.HP <= 0)
+		{
+			//Already dead.
+		}
+		sm.AddHP(-5);
+		if (sm.HP > 0)
+		{
+			if (doHitAnimation)
+			{
+				Hit();
+			}
+			//do some VFX, like splatter blood...
+		}
+		else
+		{
+			Die();
+		}
 	}
 }
