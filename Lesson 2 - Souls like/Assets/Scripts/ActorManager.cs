@@ -50,6 +50,7 @@ public class ActorManager : MonoBehaviour {
 
 	public void TryDoDamage(WeaponController targetWc,bool attackVaild,bool counterVaild)
 	{
+		//print("targetWc = " + targetWc + " attack Vaild = " + attackVaild + " countervaild = " + counterVaild);
 		if (sm.isCounterBackSuccess)
 		{
 			if (counterVaild)
@@ -109,18 +110,22 @@ public class ActorManager : MonoBehaviour {
 		{
 			//Already dead.
 		}
-		sm.AddHP(-5);
-		if (sm.HP > 0)
-		{
-			if (doHitAnimation)
-			{
-				Hit();
-			}
-			//do some VFX, like splatter blood...
-		}
 		else
 		{
-			Die();
+			sm.AddHP(-5);
+			if (sm.HP > 0)
+			{
+				if (doHitAnimation)
+				{
+					Hit();
+				}
+				//do some VFX, like splatter blood...
+			}
+			else 
+			{
+				Die();
+			}
 		}
+		
 	}
 }

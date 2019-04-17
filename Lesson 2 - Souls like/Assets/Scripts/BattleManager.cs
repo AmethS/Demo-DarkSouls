@@ -36,7 +36,8 @@ public class BattleManager : IActorManagerInterface {
 
 		if (col.tag=="Weapon")
 		{
-				am.TryDoDamage(targetWc,attackVaild,counterVaild);
+			am.TryDoDamage(targetWc,attackVaild,counterVaild);
+			//print("Collider impact");
 		}
 	}
 

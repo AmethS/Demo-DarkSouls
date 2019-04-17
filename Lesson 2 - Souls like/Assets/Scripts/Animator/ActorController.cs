@@ -300,6 +300,10 @@ public class ActorController : MonoBehaviour {
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 	}
+	public void OnCounterBackExit()
+	{
+		model.SendMessage("CounterBackDisable");
+	}
 
 	public void OnUpdateRM(object _deltaPos)
     {
