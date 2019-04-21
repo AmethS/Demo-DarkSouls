@@ -4055,6 +4055,105 @@ Transform:
   m_Father: {fileID: 2050398489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1506652689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1506652690}
+  - component: {fileID: 1506652693}
+  - component: {fileID: 1506652692}
+  - component: {fileID: 1506652691}
+  - component: {fileID: 1506652694}
+  m_Layer: 13
+  m_Name: caster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506652690
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506652689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00000010925, y: 0.34, z: 0.413}
+  m_LocalScale: {x: 0.4678427, y: 1, z: 0.83380085}
+  m_Children: []
+  m_Father: {fileID: 1723591622}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1506652691
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506652689}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: e93839adb1888aa4eac09e917e5e4a69, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1506652692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506652689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1506652693
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506652689}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1506652694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506652689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a28614e0bd86f45bc0b261573d2628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  eventName: frontStab
+  active: 0
 --- !u!4 &1511514236 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400080, guid: 2f9d958fbcd96e44ca35a77a15e3187a, type: 3}
@@ -4251,7 +4350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1638925835
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -4272,6 +4371,10 @@ PlayableDirector:
     value: {fileID: 1576495966}
   - key: {fileID: 114173982210925732, guid: 2c2a781ba2f956e468fe0d6559dcb500, type: 2}
     value: {fileID: 475136370}
+  - key: {fileID: 114928515077956080, guid: 2c2a781ba2f956e468fe0d6559dcb500, type: 2}
+    value: {fileID: 1771631540}
+  - key: {fileID: 114479661376028154, guid: 2c2a781ba2f956e468fe0d6559dcb500, type: 2}
+    value: {fileID: 1723591618}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1638925836
@@ -4299,6 +4402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pd: {fileID: 1638925835}
+  attacker: {fileID: 0}
+  victim: {fileID: 0}
 --- !u!1 &1669946717
 GameObject:
   m_ObjectHideFlags: 0
@@ -4633,6 +4738,8 @@ GameObject:
   - component: {fileID: 1723591617}
   - component: {fileID: 1723591618}
   - component: {fileID: 1723591623}
+  - component: {fileID: 1723591625}
+  - component: {fileID: 1723591624}
   m_Layer: 10
   m_Name: EnemyHandle
   m_TagString: Untagged
@@ -4659,6 +4766,7 @@ MonoBehaviour:
   jRight: 0
   run: 0
   defense: 0
+  action: 0
   jump: 0
   roll: 0
   lockon: 0
@@ -4682,6 +4790,8 @@ MonoBehaviour:
   bm: {fileID: 0}
   wm: {fileID: 0}
   sm: {fileID: 0}
+  dm: {fileID: 0}
+  im: {fileID: 0}
 --- !u!114 &1723591619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4704,7 +4814,7 @@ MonoBehaviour:
   jabMultiplier: 1
   frictionOne: {fileID: 13400000, guid: 166e4285acde314499f274c0a647bcf0, type: 2}
   frictionZero: {fileID: 13400000, guid: 4206eca27c41ecd45a4f8eaf4fe1886e, type: 2}
-  rigid: {fileID: 0}
+  anim: {fileID: 0}
   leftIsShiel: 1
 --- !u!54 &1723591620
 Rigidbody:
@@ -4748,6 +4858,7 @@ Transform:
   - {fileID: 819120499}
   - {fileID: 1420216691}
   - {fileID: 98410086}
+  - {fileID: 1506652690}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4781,6 +4892,38 @@ MonoBehaviour:
   isImmortal: 0
   isCounterBackSuccess: 0
   isCounterBackFailure: 0
+--- !u!114 &1723591624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723591616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9938e24012187f84e877773836af7e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  pd: {fileID: 0}
+  frontStab: {fileID: 11400000, guid: 2c2a781ba2f956e468fe0d6559dcb500, type: 2}
+  attacker: {fileID: 1723591618}
+  victim: {fileID: 1771631540}
+--- !u!320 &1723591625
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723591616}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1739348881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4960,6 +5103,8 @@ GameObject:
   - component: {fileID: 1771631539}
   - component: {fileID: 1771631540}
   - component: {fileID: 1771631541}
+  - component: {fileID: 1771631543}
+  - component: {fileID: 1771631542}
   m_Layer: 11
   m_Name: PlayerHandle
   m_TagString: Untagged
@@ -4986,6 +5131,7 @@ MonoBehaviour:
   jRight: 0
   run: 0
   defense: 0
+  action: 0
   jump: 0
   roll: 0
   lockon: 0
@@ -5030,7 +5176,7 @@ MonoBehaviour:
   jabMultiplier: 1
   frictionOne: {fileID: 13400000, guid: 166e4285acde314499f274c0a647bcf0, type: 2}
   frictionZero: {fileID: 13400000, guid: 4206eca27c41ecd45a4f8eaf4fe1886e, type: 2}
-  rigid: {fileID: 0}
+  anim: {fileID: 0}
   leftIsShiel: 1
 --- !u!136 &1771631536
 CapsuleCollider:
@@ -5095,6 +5241,7 @@ MonoBehaviour:
   jRight: 0
   run: 0
   defense: 0
+  action: 0
   jump: 0
   roll: 0
   lockon: 0
@@ -5132,6 +5279,8 @@ MonoBehaviour:
   bm: {fileID: 0}
   wm: {fileID: 0}
   sm: {fileID: 0}
+  dm: {fileID: 0}
+  im: {fileID: 0}
 --- !u!114 &1771631541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5144,8 +5293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
-  HPMax: 50
-  HP: 50
+  HPMax: 5000
+  HP: 5000
   isGround: 0
   isJump: 0
   isFall: 0
@@ -5162,6 +5311,38 @@ MonoBehaviour:
   isImmortal: 0
   isCounterBackSuccess: 0
   isCounterBackFailure: 0
+--- !u!114 &1771631542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771631533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9938e24012187f84e877773836af7e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  pd: {fileID: 0}
+  frontStab: {fileID: 11400000, guid: 2c2a781ba2f956e468fe0d6559dcb500, type: 2}
+  attacker: {fileID: 1771631540}
+  victim: {fileID: 1723591618}
+--- !u!320 &1771631543
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771631533}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1817754650
 GameObject:
   m_ObjectHideFlags: 0

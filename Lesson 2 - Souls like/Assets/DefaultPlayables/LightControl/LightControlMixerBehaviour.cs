@@ -5,6 +5,7 @@ using UnityEngine.Timeline;
 
 public class LightControlMixerBehaviour : PlayableBehaviour
 {
+	// save original values
     Color m_DefaultColor;
     float m_DefaultIntensity;
     float m_DefaultBounceIntensity;
@@ -22,6 +23,7 @@ public class LightControlMixerBehaviour : PlayableBehaviour
 
         if (!m_FirstFrameHappened)
         {
+			// save default values
             m_DefaultColor = m_TrackBinding.color;
             m_DefaultIntensity = m_TrackBinding.intensity;
             m_DefaultBounceIntensity = m_TrackBinding.bounceIntensity;
@@ -31,6 +33,7 @@ public class LightControlMixerBehaviour : PlayableBehaviour
 
         int inputCount = playable.GetInputCount ();
 
+		//Temporary values
         Color blendedColor = Color.clear;
         float blendedIntensity = 0f;
         float blendedBounceIntensity = 0f;

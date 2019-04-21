@@ -13,10 +13,11 @@ public abstract class IUserInput : MonoBehaviour {
     public float jRight;
 
 
-      //1. pressing signal
+    //1. pressing signal
     public bool run;
     public bool defense;
-      //2. trigger once singal
+	//2. trigger once singal
+	public bool action;
     public bool jump;
     protected bool lastJump;
     //public bool attack;

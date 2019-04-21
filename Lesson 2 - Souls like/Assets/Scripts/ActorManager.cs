@@ -10,6 +10,8 @@ public class ActorManager : MonoBehaviour {
 	public BattleManager bm;
 	public WeaponManager wm;
 	public StateManager sm;
+	public DirectorManager dm;
+	public InteractionManager im;
 
 	// Use this for initialization
 	void Awake()
@@ -22,8 +24,20 @@ public class ActorManager : MonoBehaviour {
 		bm = Bind<BattleManager>(sensor);
 		wm = Bind<WeaponManager>(model);
 		sm = Bind<StateManager>(gameObject);
-		//sm.Test();
+		dm = Bind<DirectorManager>(gameObject);
+		im = Bind<InteractionManager>(sensor);
+
+		ac.OnAction += DoAction;
+
+
 	}
+
+	public void DoAction()
+	{
+		print("heyhey~ action1");
+	}
+
+
 
 	//Generic  for connect AM and Other Mananger
 	private T Bind<T>(GameObject go) where T : IActorManagerInterface 
@@ -127,5 +141,12 @@ public class ActorManager : MonoBehaviour {
 			}
 		}
 		
+	}
+
+
+
+	public void LockUnLockActorController(bool value)
+	{
+		ac.SetBool("lock", value);
 	}
 }

@@ -24,8 +24,8 @@ public class ActorController : MonoBehaviour {
     public PhysicMaterial frictionOne;
     public PhysicMaterial frictionZero;
 
-    private Animator anim;
-    public Rigidbody rigid;
+    public Animator anim;
+    private Rigidbody rigid;
     private Vector3 planarVec;
     private Vector3 thrustVec;
     private bool lockPlanar = false;
@@ -35,8 +35,12 @@ public class ActorController : MonoBehaviour {
     //private float lerpTarget;
     private Vector3 deltaPos;
 
-	
 	public bool leftIsShiel = true;
+
+	public delegate void OnActionDelegate();
+	public event OnActionDelegate OnAction;
+
+
 
 
 
@@ -125,6 +129,11 @@ public class ActorController : MonoBehaviour {
 				}
 			}
 
+		}
+
+		if (pi.action)
+		{
+			OnAction.Invoke();
 		}
 
 
@@ -316,6 +325,11 @@ public class ActorController : MonoBehaviour {
 	public void IssueTrigger(string triggerName)
 	{
 		anim.SetTrigger(triggerName);
+	}
+
+	public void SetBool(string boolName,bool value)
+	{
+		anim.SetBool(boolName, value);
 	}
 }
 
