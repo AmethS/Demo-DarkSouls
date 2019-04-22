@@ -12,7 +12,7 @@ public class MySuperPlayableDrawer : PropertyDrawer
 
     public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
     {
-        SerializedProperty MyFloatProp = property.FindPropertyRelative("MyFloat");
+        SerializedProperty MyFloatProp = property.FindPropertyRelative("myFloat");
 
         Rect singleFieldRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         EditorGUI.PropertyField(singleFieldRect, MyFloatProp);

@@ -10,9 +10,13 @@ public class EventCasterManager : IActorManagerInterface {
 
 
 	//// Use this for initialization
-	//void Start () {
+	void Start () {
+		if (am == null)
+		{
+			am = GetComponentInParent<ActorManager>();
+		}
 		
-	//}
+	}
 	
 	//// Update is called once per frame
 	//void Update () {

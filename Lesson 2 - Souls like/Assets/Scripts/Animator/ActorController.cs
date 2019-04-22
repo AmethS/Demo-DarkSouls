@@ -37,10 +37,9 @@ public class ActorController : MonoBehaviour {
 
 	public bool leftIsShiel = true;
 
+
 	public delegate void OnActionDelegate();
 	public event OnActionDelegate OnAction;
-
-
 
 
 
@@ -312,6 +311,12 @@ public class ActorController : MonoBehaviour {
 	public void OnCounterBackExit()
 	{
 		model.SendMessage("CounterBackDisable");
+	}
+
+	public void OnLockEnter()
+	{
+		pi.inputEnabled = false;
+		planarVec = Vector3.zero;
 	}
 
 	public void OnUpdateRM(object _deltaPos)

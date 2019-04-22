@@ -6,6 +6,7 @@ public class InteractionManager : IActorManagerInterface {
 
 	public CapsuleCollider interCol;
 
+	public List<EventCasterManager> overlapEcastms = new List<EventCasterManager>();
 
 	// Use this for initialization
 	void Start ()
@@ -23,8 +24,24 @@ public class InteractionManager : IActorManagerInterface {
 		EventCasterManager[] ecastms = col.GetComponents<EventCasterManager>();
 		foreach (var ecastm in ecastms)
 		{
-			print(ecastm.eventName);
+			if (!overlapEcastms.Contains(ecastm))
+			{
+				overlapEcastms.Add(ecastm);
+			}
 		}
-
 	}
+
+	void OnTriggerExit(Collider col)
+	{
+		EventCasterManager[] ecastms = col.GetComponents<EventCasterManager>();
+		foreach (var ecastm in ecastms)
+		{
+			if (overlapEcastms.Contains(ecastm))
+			{
+				overlapEcastms.Remove(ecastm);
+			}
+		}
+	}
+
+
 }

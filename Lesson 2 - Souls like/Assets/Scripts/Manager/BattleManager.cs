@@ -19,7 +19,10 @@ public class BattleManager : IActorManagerInterface {
 	void OnTriggerEnter(Collider col)
 	{
 		WeaponController targetWc = col.GetComponentInParent<WeaponController>();
-
+		if (targetWc == null)
+		{
+			return;
+		}
 		GameObject attacker = targetWc.wm.am.gameObject;
 		GameObject receiver = am.gameObject;
 
