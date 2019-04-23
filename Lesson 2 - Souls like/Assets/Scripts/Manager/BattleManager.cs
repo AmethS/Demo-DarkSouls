@@ -24,24 +24,36 @@ public class BattleManager : IActorManagerInterface {
 			return;
 		}
 		GameObject attacker = targetWc.wm.am.gameObject;
-		GameObject receiver = am.gameObject;
-
-		Vector3 attackingDir = receiver.transform.position - attacker.transform.position;
-		Vector3 counterDir = attacker.transform.position - receiver.transform.position;
-
-		float attackingAngle1 = Vector3.Angle(attacker.transform.forward, attackingDir); // attack range
-		float counterAngle1 = Vector3.Angle(receiver.transform.forward, counterDir);// counter  range
-		float counterAngle2 = Vector3.Angle(attacker.transform.forward, receiver.transform.forward);// closed to 180
-
-		bool attackVaild = (attackingAngle1 < 45);
-		bool counterVaild = (counterAngle1 < 30 && (Mathf.Abs(counterAngle2 - 180) < 30));
-
+		GameObject receiver = am.ac.model;
 
 		if (col.tag=="Weapon")
 		{
-			am.TryDoDamage(targetWc,attackVaild,counterVaild);
+			am.TryDoDamage(targetWc,CheckAngleTarget(receiver,attacker,45f),CheckAnglePlayer(receiver,attacker,360f));
 			//print("Collider impact");
 		}
+	}
+
+	public static bool CheckAnglePlayer(GameObject player, GameObject target, float playerAngleLimit)
+	{
+		Vector3 counterDir = target.transform.position - player.transform.position;
+
+		float counterAngle1 = Vector3.Angle(player.transform.forward, counterDir);// counter  range
+		float counterAngle2 = Vector3.Angle(target.transform.forward, player.transform.forward);// closed to 180
+
+		bool counterVaild = (counterAngle1 < playerAngleLimit && (Mathf.Abs(counterAngle2 - 180) < playerAngleLimit));
+
+		return counterVaild;
+	}
+
+	public static bool CheckAngleTarget(GameObject player,GameObject target,float targetAngleLimit)
+	{
+		Vector3 attackingDir = player.transform.position - target.transform.position;
+
+		float attackingAngle1 = Vector3.Angle(target.transform.forward, attackingDir); // attack range
+
+		bool attackVaild = (attackingAngle1 < targetAngleLimit);
+
+		return attackVaild;
 	}
 
 

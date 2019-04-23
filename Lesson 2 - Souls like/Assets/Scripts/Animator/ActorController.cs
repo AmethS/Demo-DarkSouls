@@ -130,10 +130,6 @@ public class ActorController : MonoBehaviour {
 
 		}
 
-		if (pi.action)
-		{
-			OnAction.Invoke();
-		}
 
 
 		//lockMode & move
@@ -153,13 +149,15 @@ public class ActorController : MonoBehaviour {
 			anim.SetFloat("right", localDvec.x * (pi.run ? 2.0f : 1.0f));
 		}
 		if (camcon.lockStat == false)  // Cant change forward in lockMode 
-        {
-            if (pi.dMag > 0.001f)  // avoid pi.dVec = 0
-            {
-                model.transform.forward = Vector3.Slerp(model.transform.forward, pi.dVec, 0.3f);
-            }
-
-            if (lockPlanar == false)
+		{
+			if (pi.inputEnabled == true)
+			{
+				if (pi.dMag > 0.001f)  // avoid pi.dVec = 0
+				{
+					model.transform.forward = Vector3.Slerp(model.transform.forward, pi.dVec, 0.3f);
+				}
+			}
+			if (lockPlanar == false)
             {
                 planarVec = pi.dMag * model.transform.forward * walkspeed * (pi.run ? runMultiplier : 1.0f);
             }
@@ -182,7 +180,10 @@ public class ActorController : MonoBehaviour {
                 planarVec = pi.dVec  * walkspeed * (pi.run ? runMultiplier : 1.0f);
             }
         }
-
+		if (pi.action)
+		{
+			OnAction.Invoke();
+		}
     }
 
     private void FixedUpdate()

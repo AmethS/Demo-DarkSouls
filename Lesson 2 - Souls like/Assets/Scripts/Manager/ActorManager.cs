@@ -36,10 +36,22 @@ public class ActorManager : MonoBehaviour {
 	{
 		if (im.overlapEcastms.Count != 0)
 		{
-			// I should play corresponding(eventName) timeline here.
-			if (im.overlapEcastms[0].eventName == "frontStab")
+			if (im.overlapEcastms[0].active == true)
 			{
-				dm.PlayFrontStab("frontStab",this,im.overlapEcastms[0].am);
+				if (im.overlapEcastms[0].eventName == "frontStab")
+				{
+					dm.PlayTimeline("frontStab", this, im.overlapEcastms[0].am);
+				}
+				else if (im.overlapEcastms[0].eventName == "openBox")
+				{
+					if (BattleManager.CheckAnglePlayer(ac.model, im.overlapEcastms[0].am.gameObject, 40))
+					{
+						//im.overlapEcastms[0].active = false;
+						transform.position = im.overlapEcastms[0].am.gameObject.transform.position + im.overlapEcastms[0].am.transform.TransformVector(im.overlapEcastms[0].offset);
+						ac.model.transform.forward = im.overlapEcastms[0].am.transform.forward * -1;
+						dm.PlayTimeline("openBox", this, im.overlapEcastms[0].am);
+					}
+				}
 			}
 		}
 	}
@@ -71,7 +83,6 @@ public class ActorManager : MonoBehaviour {
 
 	public void TryDoDamage(WeaponController targetWc,bool attackVaild,bool counterVaild)
 	{
-		//print("targetWc = " + targetWc + " attack Vaild = " + attackVaild + " countervaild = " + counterVaild);
 		if (sm.isCounterBackSuccess)
 		{
 			if (counterVaild)
