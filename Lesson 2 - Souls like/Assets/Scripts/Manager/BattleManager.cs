@@ -28,7 +28,7 @@ public class BattleManager : IActorManagerInterface {
 
 		if (col.tag=="Weapon")
 		{
-			am.TryDoDamage(targetWc,CheckAngleTarget(receiver,attacker,45f),CheckAnglePlayer(receiver,attacker,360f));
+			am.TryDoDamage(targetWc,CheckAngleTarget(receiver,attacker,70f),CheckAnglePlayer(receiver,attacker,360f));
 			//print("Collider impact");
 		}
 	}

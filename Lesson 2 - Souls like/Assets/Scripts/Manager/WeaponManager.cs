@@ -15,16 +15,32 @@ public class WeaponManager : IActorManagerInterface {
 
 	void Start()
 	{
-		whL = transform.DeepFind("weaponHandleL").gameObject;
-		whR = transform.DeepFind("weaponHandleR").gameObject;
+		try
+		{
+			whL = transform.DeepFind("weaponHandleL").gameObject;
+			wcL = BindWeaponController(whL);
+			weaponColL = whL.GetComponentInChildren<Collider>();
 
-		wcL = BindWeaponController(whL);
-		wcR = BindWeaponController(whR);
+		}
+		catch (System.Exception)
+		{
+			//
+			// If there is no "weaponHandleL" or related object.
+			//
+		}
+		try
+		{
+			whR = transform.DeepFind("weaponHandleR").gameObject;
+			wcR = BindWeaponController(whR);
+			weaponColR = whR.GetComponentInChildren<Collider>();
 
-
-		weaponColL = whL.GetComponentInChildren<Collider>();
-		weaponColR = whR.GetComponentInChildren<Collider>();
-
+		}
+		catch (System.Exception)
+		{
+			//
+			// If there is no "weaponHandleR" or related object.
+			//
+		}
 	}
 
 	public WeaponController BindWeaponController(GameObject targerObj)

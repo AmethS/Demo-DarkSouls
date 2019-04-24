@@ -81,7 +81,7 @@ public class ActorController : MonoBehaviour {
 		}
 
 		//roll trigger
-		if (pi.roll || rigid.velocity.magnitude>7.0f)
+		if (pi.roll && rigid.velocity.magnitude>7.0f)
         {
             anim.SetTrigger("roll");
             canAttack = false;
@@ -129,8 +129,6 @@ public class ActorController : MonoBehaviour {
 			}
 
 		}
-
-
 
 		//lockMode & move
 		if (pi.lockon == true)
@@ -180,6 +178,8 @@ public class ActorController : MonoBehaviour {
                 planarVec = pi.dVec  * walkspeed * (pi.run ? runMultiplier : 1.0f);
             }
         }
+
+		//event
 		if (pi.action)
 		{
 			OnAction.Invoke();
@@ -239,6 +239,7 @@ public class ActorController : MonoBehaviour {
         col.material = frictionOne;
         trackDirection = false;
     }
+
     public void OnGroundExit()
     {
         col.material = frictionZero;
@@ -273,26 +274,31 @@ public class ActorController : MonoBehaviour {
     {
         pi.inputEnabled = false;
     }
+
     public void OnAttack1hAUpdate()
     {
         thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
     }
+
 	public void OnAttackExit()
 	{
 		model.SendMessage("WeaponDisable");
 	} 
+
 	public void OnHitEnter()
 	{
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 		model.SendMessage("WeaponDisable");
 	}
+
 	public void OnDieEnter()
 	{
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 		model.SendMessage("WeaponDisable");
 	}
+
 	public void OnBlockedEnter()
 	{
 		pi.inputEnabled = false;
@@ -309,6 +315,7 @@ public class ActorController : MonoBehaviour {
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 	}
+
 	public void OnCounterBackExit()
 	{
 		model.SendMessage("CounterBackDisable");

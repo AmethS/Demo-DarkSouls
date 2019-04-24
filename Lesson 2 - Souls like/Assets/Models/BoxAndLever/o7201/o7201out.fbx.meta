@@ -18,7 +18,17 @@ ModelImporter:
     4300000: mesh0
     4300002: mesh1
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: o7201_0
+    second: {fileID: 2100000, guid: 302178e55ccde5a4da273892a3212755, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: o7201_1
+    second: {fileID: 2100000, guid: 302178e55ccde5a4da273892a3212755, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

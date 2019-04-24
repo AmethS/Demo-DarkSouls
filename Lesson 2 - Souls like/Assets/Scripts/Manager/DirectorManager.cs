@@ -13,6 +13,7 @@ public class DirectorManager : IActorManagerInterface {
 	[Header("==== Timeline Assets ====")]
 	public TimelineAsset frontStab;
 	public TimelineAsset openBox;
+	public TimelineAsset leverUp;
 
 	[Header("==== Assets Settings====")]
 	public ActorManager attacker;
@@ -58,7 +59,7 @@ public class DirectorManager : IActorManagerInterface {
 						MySuperPlayableClip myClip = (MySuperPlayableClip)clip.asset;
 						MySuperPlayableBehaviour myBehav = myClip.template;
 						myBehav.myFloat = 777f;
-						Debug.Log(myBehav.myFloat);
+						//Debug.Log(myBehav.myFloat);
 						pd.SetReferenceValue(myClip.am.exposedName, attacker);
 						
 					}
@@ -71,7 +72,7 @@ public class DirectorManager : IActorManagerInterface {
 						MySuperPlayableClip myClip = (MySuperPlayableClip)clip.asset;
 						MySuperPlayableBehaviour myBehav = myClip.template;
 						myBehav.myFloat = 666f;
-						Debug.Log(myBehav.myFloat);
+						//Debug.Log(myBehav.myFloat);
 						pd.SetReferenceValue(myClip.am.exposedName, victim);
 						
 					}
@@ -120,6 +121,45 @@ public class DirectorManager : IActorManagerInterface {
 					pd.SetGenericBinding(track, attacker.ac.anim);
 				}
 				else if (track.name == "Box Animation")
+				{
+					pd.SetGenericBinding(track, victim.ac.anim);
+				}
+			}
+			pd.Evaluate();
+			pd.Play();
+		}
+
+		else if (timelineName == "leverUp")
+		{
+			pd.playableAsset = Instantiate(leverUp);
+			TimelineAsset timeline = (TimelineAsset)pd.playableAsset;
+			foreach (var track in timeline.GetOutputTracks())
+			{
+				if (track.name == "Player Script")
+				{
+					pd.SetGenericBinding(track, attacker);
+					foreach (var clip in track.GetClips())
+					{
+						MySuperPlayableClip myClip = (MySuperPlayableClip)clip.asset;
+						MySuperPlayableBehaviour myBehav = myClip.template;
+						pd.SetReferenceValue(myClip.am.exposedName, attacker);
+					}
+				}
+				else if (track.name == "Lever Script")
+				{
+					pd.SetGenericBinding(track, victim);
+					foreach (var clip in track.GetClips())
+					{
+						MySuperPlayableClip myClip = (MySuperPlayableClip)clip.asset;
+						MySuperPlayableBehaviour myBehav = myClip.template;
+						pd.SetReferenceValue(myClip.am.exposedName, victim);
+					}
+				}
+				else if (track.name == "Player Animation")
+				{
+					pd.SetGenericBinding(track, attacker.ac.anim);
+				}
+				else if (track.name == "Lever Animation")
 				{
 					pd.SetGenericBinding(track, victim.ac.anim);
 				}

@@ -18,7 +18,18 @@ public class ActorManager : MonoBehaviour {
 	{
 		ac = GetComponent<ActorController>();
 		GameObject model = ac.model;
-		GameObject sensor = transform.Find("sensor").gameObject;
+		GameObject sensor = null;
+		try
+		{
+			sensor = transform.Find("sensor").gameObject;
+
+		}
+		catch (System.Exception)
+		{
+			//
+			// If there is no "sensor" object.
+			//
+		}
 
 
 		bm = Bind<BattleManager>(sensor);
@@ -40,16 +51,28 @@ public class ActorManager : MonoBehaviour {
 			{
 				if (im.overlapEcastms[0].eventName == "frontStab")
 				{
+					transform.position = im.overlapEcastms[0].am.gameObject.transform.position + im.overlapEcastms[0].am.transform.TransformVector(im.overlapEcastms[0].offset);
+					ac.model.transform.forward = im.overlapEcastms[0].am.transform.forward * -1;
 					dm.PlayTimeline("frontStab", this, im.overlapEcastms[0].am);
 				}
 				else if (im.overlapEcastms[0].eventName == "openBox")
 				{
 					if (BattleManager.CheckAnglePlayer(ac.model, im.overlapEcastms[0].am.gameObject, 40))
 					{
-						//im.overlapEcastms[0].active = false;
+						im.overlapEcastms[0].active = false;
 						transform.position = im.overlapEcastms[0].am.gameObject.transform.position + im.overlapEcastms[0].am.transform.TransformVector(im.overlapEcastms[0].offset);
 						ac.model.transform.forward = im.overlapEcastms[0].am.transform.forward * -1;
 						dm.PlayTimeline("openBox", this, im.overlapEcastms[0].am);
+					}
+				}
+				else if (im.overlapEcastms[0].eventName == "leverUp")
+				{
+					if (BattleManager.CheckAnglePlayer(ac.model, im.overlapEcastms[0].am.gameObject, 40))
+					{
+						im.overlapEcastms[0].active = false;
+						transform.position = im.overlapEcastms[0].am.gameObject.transform.position + im.overlapEcastms[0].am.transform.TransformVector(im.overlapEcastms[0].offset);
+						ac.model.transform.forward = im.overlapEcastms[0].am.transform.forward * -1;
+						dm.PlayTimeline("leverUp", this, im.overlapEcastms[0].am);
 					}
 				}
 			}
@@ -62,6 +85,10 @@ public class ActorManager : MonoBehaviour {
 	private T Bind<T>(GameObject go) where T : IActorManagerInterface 
 	{
 		T tempInstance;
+		if (go == null)
+		{
+			return null;
+		}
 		tempInstance = go.GetComponent<T>();
 		if (tempInstance == null)
 		{

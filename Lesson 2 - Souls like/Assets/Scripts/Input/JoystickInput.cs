@@ -79,9 +79,9 @@ public class JoystickInput : IUserInput {
         dVec = (dRight2 * transform.right) + (dUp2 * transform.forward);
 
         //action
-        run = (buttonB.IsPressing && !buttonB.IsDelaying) || buttonB.IsExtending;
-        jump = buttonB.IsExtending && buttonB.OnPressed;
-        roll = (buttonB.OnReleased && buttonB.IsDelaying);// ||(buttonA.IsPressing && !buttonA.IsDelaying);
+        run = (buttonA.IsPressing && !buttonA.IsDelaying) || buttonA.IsExtending;
+        jump = buttonA.IsExtending && buttonA.OnPressed;
+        roll = (buttonA.OnReleased && buttonA.IsDelaying);
         defense = buttonLB.IsPressing;
 		action = buttonX.OnPressed;
 
