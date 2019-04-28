@@ -380,8 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f06424c3ed632478a200cf9e5e0c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onExitMessages:
-  - OnAttackExit
+  onExitMessages: []
 --- !u!114 &114930025850388066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,7 +546,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25548995
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.72743756
   m_HasExitTime: 0

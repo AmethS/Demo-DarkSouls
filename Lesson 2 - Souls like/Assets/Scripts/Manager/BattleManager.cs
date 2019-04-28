@@ -16,7 +16,7 @@ public class BattleManager : IActorManagerInterface {
 		defCol.radius = 0.4f;
 		defCol.isTrigger = true;
 	}
-	void OnTriggerEnter(Collider col)
+	void OnTriggerExit(Collider col)
 	{
 		WeaponController targetWc = col.GetComponentInParent<WeaponController>();
 		if (targetWc == null)
@@ -31,6 +31,7 @@ public class BattleManager : IActorManagerInterface {
 			am.TryDoDamage(targetWc,CheckAngleTarget(receiver,attacker,70f),CheckAnglePlayer(receiver,attacker,360f));
 			//print("Collider impact");
 		}
+		//Debug.Log("hit!");
 	}
 
 	public static bool CheckAnglePlayer(GameObject player, GameObject target, float playerAngleLimit)

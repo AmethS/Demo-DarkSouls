@@ -7,7 +7,7 @@ public class DummyIUserInput: IUserInput {
 	IEnumerator Start() {
 		while (true)
 		{
-			rb = true;
+			//rb = true;
 			yield return 0 ;
 		}
 		

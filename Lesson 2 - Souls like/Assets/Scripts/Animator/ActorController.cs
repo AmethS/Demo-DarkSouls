@@ -290,6 +290,7 @@ public class ActorController : MonoBehaviour {
 		pi.inputEnabled = false;
 		planarVec = Vector3.zero;
 		model.SendMessage("WeaponDisable");
+		//print(model.name);
 	}
 
 	public void OnDieEnter()

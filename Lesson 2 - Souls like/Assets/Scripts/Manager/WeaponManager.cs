@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : IActorManagerInterface {
-
+	[SerializeField]
 	private Collider weaponColL;
+	[SerializeField]
 	private Collider weaponColR;
 
 	public GameObject whL;
@@ -55,6 +56,42 @@ public class WeaponManager : IActorManagerInterface {
 
 		return tempWc;
 	}
+	public void UpdataWeaponCollider(string side,Collider col)
+	{
+		if (side == "L")
+		{
+			weaponColL = col;
+		}
+		else if (side == "R")
+		{
+			weaponColR = col;
+		}
+		else
+		{
+			Debug.Log("Cant Updata Weapon Collider" );
+		}
+	}
+	public void UnLoadWeapon(string side)
+	{
+		if (side == "L")
+		{
+			foreach (Transform tran in whL.transform)
+			{
+				weaponColL = null;
+				wcL.wdata = null;
+				Destroy(tran.gameObject);
+			}
+		}
+		else if(side == "R")
+		{
+			foreach (Transform tran in whR.transform)
+			{
+				weaponColR = null;
+				wcR.wdata = null;
+				Destroy(tran.gameObject);
+			}
+		}
+	}
 	public void WeaponEnable()
 	{
 		if (am.ac.CheckStateTag("AttackL"))
@@ -64,12 +101,14 @@ public class WeaponManager : IActorManagerInterface {
 		else
 		{
 			weaponColR.enabled = true;
+			//Debug.Log("Attack judgment");
 		}
 	}
 	public void WeaponDisable()
 	{
 			weaponColL.enabled = false;
 			weaponColR.enabled = false;
+		//Debug.Log("Attack judgment off");
 	}
 	public void CounterBackEnable()
 	{
