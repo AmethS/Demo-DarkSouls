@@ -23,6 +23,15 @@ public class WeaponFactory
 
 		return obj;
 	}
+
+
+	/// <summary>
+	/// this method achieves two funciton. A : initialize weapon and wdata  B : return weapon collider
+	/// </summary>
+	/// <param name="weaponName"></param>
+	/// <param name="side"></param>
+	/// <param name="wm"></param>
+	/// <returns></returns>
 	public Collider CreateWeapon(string weaponName, string side, WeaponManager wm)
 	{
 		WeaponController wc;

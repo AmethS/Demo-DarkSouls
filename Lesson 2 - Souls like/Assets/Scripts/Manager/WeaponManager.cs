@@ -21,7 +21,6 @@ public class WeaponManager : IActorManagerInterface {
 			whL = transform.DeepFind("weaponHandleL").gameObject;
 			wcL = BindWeaponController(whL);
 			weaponColL = whL.GetComponentInChildren<Collider>();
-
 		}
 		catch (System.Exception)
 		{
